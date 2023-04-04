@@ -42,9 +42,9 @@ image_t load_image(const string &filename)
     {
         for (int x = 0; x < width; ++x)
         {
-            for (int c = 0; c < 3; ++c)
+            for (int c = 0; c < NUM_CHANNELS; ++c)
             {
-                result[c][y][x] = data[(y * width + x) * 3 + c];
+                result[c][y][x] = data[(y * width + x) * NUM_CHANNELS + c];
             }
         }
     }
