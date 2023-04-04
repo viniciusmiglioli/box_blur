@@ -83,7 +83,7 @@ single_channel_image_t apply_box_blur(const single_channel_image_t &image, const
     int width = image[0].size();
     int height = image.size();
 
-    // Get the dimensions of the input image
+    // Create a new image to store the result
     single_channel_image_t result(height, vector<uint8_t>(width));
 
     // Calculate the padding size for the filter
@@ -114,25 +114,26 @@ int main(int argc, char *argv[])
     if (filesystem::is_directory(OUTPUT_DIRECTORY))
     {
         cerr << "Error, there is a file named " << OUTPUT_DIRECTORY << ", it should be a directory";
-        return 1;
-    }
-
-    auto start_time = chrono::high_resolution_clock::now();
-    for (auto &file : filesystem::directory_iterator{INPUT_DIRECTORY})
-    {
-        string input_image_path = file.path().string();
-        clog << "Processing image: " << input_image_path << endl;
-        image_t input_image = load_image(input_image_path);
-        image_t output_image;
-        for (int i = 0; i < NUM_CHANNELS; ++i)
+        auto start_time = chrono::high_resolution_clock::now();
+        for (auto &file : filesystem::directory_iterator{INPUT_DIRECTORY})
         {
-            output_image[i] = apply_box_blur(input_image[i], FILTER_SIZE);
+            string input_image_path = file.path().string();
+            clog << "Processing image: " << input_image_path << endl;
+            image_t input_image = load_image(input_image_path);
+            image_t output_image;
+            for (int i = 0; i < NUM_CHANNELS; ++i)
+            {
+                output_image[i] = apply_box_blur(input_image[i], FILTER_SIZE);
+            }
+            string output_image_path = input_image_path.replace(input_image_path.find(INPUT_DIRECTORY), INPUT_DIRECTORY.length(), OUTPUT_DIRECTORY);
+            write_image(output_image_path, output_image);
         }
-        string output_image_path = input_image_path.replace(input_image_path.find(INPUT_DIRECTORY), INPUT_DIRECTORY.length(), OUTPUT_DIRECTORY);
-        write_image(output_image_path, output_image);
+        auto end_time = chrono::high_resolution_clock::now();
+        auto elapsed_time = chrono::duration_cast<chrono::milliseconds>(end_time-start_time);
+        cout << "Elapsed time: " << elapsed_time.count() << " ms" << endl;
     }
-    auto end_time = chrono::high_resolution_clock::now();
-    auto elapsed_time = chrono::duration_cast<chrono::milliseconds>(end_time - start_time);
-    cout << "Elapsed time: " << elapsed_time.count() << " ms" << endl;
+    else
+    {
+    }
     return 0;
 }
