@@ -85,6 +85,6 @@ Nesse exercício vocês usaram o padrão de projeto Produtor-Consumidor para apl
 Inicialmente vocês devem implementar a função _apply_box_blur_ conforme descrito na seção anterior. Para a aula de hoje (04/04), vocês devem finalizar a implementação e testar com o conjunto de imagens disponíveis na pasta `input`. 
 
 Na próxima terça feira (11/04) iremos modificar o código implementado para incluir:
-\item uma thread produtora, responsável por monitorar arquivos na pasta `input` e incluir o nome do arquivo em um buffer
-\item $n$ threads consumidoras, responsáveis por aplicar o filtro _box blur_ em cada novo arquivo incluído no buffer e salvar o arquivo resultante no diretório `output`
+* 1 thread produtora, responsável por monitorar arquivos existentes e novos arquivos na pasta `input` e incluir o nome do arquivo correspondente em um buffer
+* $n$ threads consumidoras, responsáveis por aplicar o filtro _box blur_ em cada novo arquivo incluído no buffer e salvar o arquivo resultante no diretório `output`
 
