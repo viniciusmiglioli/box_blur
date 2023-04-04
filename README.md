@@ -16,7 +16,7 @@ A animação abaixo ilustra o processo de filtragem descrita. Nesse caso utiliza
 
 1. Escolha o tamanho do filtro de desfoque (por exemplo, 3x3, 4x4, 5x5 etc.). O tamanho do filtro determina o quão borrada será a imagem resultante.
 
-2. Calcule o preenchimento (padding) necessário para o filtro. O preenchimento é igual à metade do tamanho do filtro arredondado para baixo. Por exemplo, para um filtro 4x4, o preenchimento é 2.
+2. Calcule o preenchimento (padding) necessário para o filtro. O preenchimento é igual à metade do tamanho do filtro arredondado para baixo. Por exemplo, para um filtro 5x5, o preenchimento é 2.
 
 3. Crie uma nova imagem para armazenar o resultado. A imagem resultante deve ter as mesmas dimensões que a imagem original.
 
