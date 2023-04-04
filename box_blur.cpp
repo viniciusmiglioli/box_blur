@@ -79,11 +79,14 @@ void write_image(const string &filename, const image_t &image)
 
 single_channel_image_t apply_box_blur(const single_channel_image_t &image, const int filter_size)
 {
+    // Get the dimensions of the input image
     int width = image[0].size();
     int height = image.size();
 
+    // Get the dimensions of the input image
     single_channel_image_t result(height, vector<uint8_t>(width));
 
+    // Calculate the padding size for the filter
     int pad = filter_size / 2;
 
     // YOUR CODE HERE
