@@ -88,3 +88,5 @@ Na próxima terça feira (11/04) iremos modificar o código implementado para in
 * 1 thread produtora, responsável por monitorar arquivos existentes e novos arquivos na pasta `input` e incluir o nome do arquivo correspondente em um buffer de tamanho limitado
 * $n$ threads consumidoras, responsáveis por aplicar o filtro _box blur_ em cada novo arquivo incluído no buffer e salvar o arquivo resultante no diretório `output`
 
+Utilizem o codespaces para realizar o exercício.
+
