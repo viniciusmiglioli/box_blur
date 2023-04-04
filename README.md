@@ -77,7 +77,7 @@ function apply_box_blur(image, filter_size):
     // Return the blurred image
     return result
 ```
-
+---
 # Exercício Computacional III
 
 Nesse exercício vocês irão utlizar o padrão produtor-consumidor para aplicar o filtro _box blur_ em um conjunto de arquivos utilizando múltiplas threads.
