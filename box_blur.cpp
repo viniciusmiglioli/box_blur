@@ -13,8 +13,8 @@
 using namespace std;
 
 // CONSTANTS
-static const string INPUT_DIRECTORY = "input";
-static const string OUTPUT_DIRECTORY = "output";
+static const string INPUT_DIRECTORY = "../input";
+static const string OUTPUT_DIRECTORY = "../output";
 static const int FILTER_SIZE = 5;
 static const int NUM_CHANNELS = 3;
 
@@ -89,7 +89,25 @@ single_channel_image_t apply_box_blur(const single_channel_image_t &image, const
     // Calculate the padding size for the filter
     int pad = filter_size / 2;
 
-    // YOUR CODE HERE
+    int i, j, pad_i, pad_j, pad_sum, sum_index;
+    for (i = 0; i < height; i++){
+        for(j = 0; j < width; j++){
+            if(i < pad || j < pad || i > (height - pad) || j > (width - pad)){
+                result[i][j] = image[i][j];
+            }
+            else{
+                sum_index = 0;
+                pad_sum = 0;
+                for (pad_i = pad; pad_i > (pad * -1); pad_i--){
+                    for(pad_j = pad; pad_j > (pad * -1); pad_j--){
+                        pad_sum += image[i - pad_i][j - pad_j];
+                        sum_index++;
+                    }
+                }
+                result[i][j] = pad_sum/sum_index;
+            }
+        }
+    }
 
     return result;
 }
